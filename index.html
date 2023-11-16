@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<title>Infinity Quest</title>
+	</head>
+	<body>
+		<h1>Infinity Quest!</h1>
+		<p class = "target">Click here![1]</p>
+		<p class = "add">Purchase +1 for 100</p>
+		<p class = "multi">Purchase x2 for 1000</p>
+		<p class = "mega">Purchase x7 for 700000</p>
+		<p class = "total"></p>
+		<script>
+const myHeading = document.querySelector("h1");
+const x = document.querySelector("p.target");
+const end = document.querySelector("p.total");
+
+let score = 0;
+
+let click_points = 1;
+
+let clicks = 0;
+
+function increment(){
+	check();
+	score = score + click_points;
+	myHeading.textContent = score;
+	console.log('count updated');
+	tally_check();
+}
+
+function add_purchase(){
+	check();
+	score = score - 100;
+	myHeading.textContent = score;
+	click_points = click_points + 1;
+	console.log('addition purchase');
+	x.textContent = "Click here! ["+click_points+"]";
+}
+
+function multi_purchase(){
+	check();
+	score = score - 1000;
+	myHeading.textContent = score;
+	click_points = click_points * 2;
+	console.log('multiplication purchase');
+	x.textContent = "Click here! ["+click_points+"]";
+}
+
+function mega_purchase(){
+	check();
+	score = score - 700000;
+	myHeading.textContent = score;
+	click_points = click_points * 7;
+	console.log('multiplication purchase');
+	x.textContent = "Click here! ["+click_points+"]";
+}
+
+function check(){
+	clicks = clicks + 1;
+	if (score < 0) {
+		alert("You've lost!");
+		location.reload();
+	}
+}
+
+function tally_check(){
+	if (score == Number.POSITIVE_INFINITY) {
+		end.textContent = "Clicks: "+clicks;
+		alert("Congratulations! You broke the integer limit! You've won!")
+	}
+}
+
+document.querySelector("p.target").addEventListener("click",increment);
+document.querySelector("p.add").addEventListener("click",add_purchase);
+document.querySelector("p.multi").addEventListener("click",multi_purchase);
+document.querySelector("p.mega").addEventListener("click",mega_purchase);
+
+console.log('hi');
+		
+		</script>
+	<body>
+</html>
